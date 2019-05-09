@@ -37,6 +37,4 @@ app.use(
   sapper.middleware()
 );
 
-app.listen(port, err => {
-  if (err) console.log('error', err);
-});
+app.listen(port);

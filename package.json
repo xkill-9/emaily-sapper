@@ -9,7 +9,8 @@
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test": "run-p --race dev cy:run"
+    "test": "run-p --race dev cy:run",
+    "lint": "eslint \"*.js\" \"**/*.js\" \"**/**/*.js\""
   },
   "dependencies": {
     "compression": "^1.7.1",
@@ -29,6 +30,7 @@
     "chokidar": "^2.0.4",
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
+    "eslint-plugin-cypress": "^2.2.1",
     "npm-run-all": "^4.1.5",
     "rollup": "^1.0.0",
     "rollup-plugin-babel": "^4.0.2",
