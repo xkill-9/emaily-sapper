@@ -8,7 +8,6 @@ import cookieSession from 'cookie-session';
 import * as sapper from '@sapper/server';
 
 import { port, mongoURI, cookieKey } from './server/config';
-import authRoutes from './server/routes/authRoutes';
 
 // Load Mongoose models
 import './server/models/User';
@@ -28,8 +27,6 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-authRoutes(app);
 
 app.use(
   compression({ threshold: 0 }),
