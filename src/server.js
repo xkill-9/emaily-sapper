@@ -18,6 +18,7 @@ const { NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 
 const app = express();
+
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -31,7 +32,12 @@ app.use(passport.session());
 app.use(
   compression({ threshold: 0 }),
   sirv('static', { dev }),
-  sapper.middleware()
+  sapper.middleware({
+    session: req => {
+      if (!req.user) return null;
+      return { user: JSON.parse(JSON.stringify(req.user)) };
+    },
+  })
 );
 
 app.listen(port);

@@ -1,25 +1,32 @@
 <script>
+  import { stores } from "@sapper/app";
+  const { session } = stores();
   export let segment;
 </script>
 
 <nav>
-  <ul>
-    <li>
-      <a class={segment === undefined ? 'selected' : ''} href=".">home</a>
-    </li>
-    <li>
-      <a class={segment === 'about' ? 'selected' : ''} href="about">about</a>
-    </li>
-
-    <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-    <li>
-      <a
-        rel="prefetch"
-        class={segment === 'blog' ? 'selected' : ''}
-        href="blog">
-        blog
-      </a>
-    </li>
-  </ul>
+  <div class="nav-wrapper">
+    <div class="row">
+      <div class="col s12">
+        <a class="brand-logo" href={$session ? '/surveys' : '/'}>
+          <i class="material-icons">email</i>
+          Emaily
+        </a>
+        <ul class="right">
+          {#if $session}
+            <li class={segment === 'surveys' ? 'active' : ''}>
+              <a href="/surveys">Surveys</a>
+            </li>
+            <li>
+              <a href="/api/logout">Logout</a>
+            </li>
+          {:else}
+            <li>
+              <a href="/auth/google">Login With Google</a>
+            </li>
+          {/if}
+        </ul>
+      </div>
+    </div>
+  </div>
 </nav>
