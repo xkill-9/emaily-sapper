@@ -1,24 +1,27 @@
-import 'dotenv/config';
 import sirv from 'sirv';
 import express from 'express';
 import compression from 'compression';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import cookieSession from 'cookie-session';
+import bodyParser from 'body-parser';
 import * as sapper from '@sapper/server';
 
-import { port, mongoURI, cookieKey } from './server/config';
+import { mongoURI, cookieKey } from './server/config';
 
 // Load Mongoose models
 import './server/models/User';
 import './server/services/passport';
+import requireLogin from './server/middlewares/requireLogin';
 
 mongoose.connect(mongoURI, { useNewUrlParser: true });
-const { NODE_ENV } = process.env;
+const { NODE_ENV, PORT } = process.env;
 const dev = NODE_ENV === 'development';
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -28,6 +31,9 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Authenticated routes
+app.use('/api/charge', requireLogin);
 
 app.use(
   compression({ threshold: 0 }),
@@ -40,4 +46,4 @@ app.use(
   })
 );
 
-app.listen(port);
+app.listen(PORT);

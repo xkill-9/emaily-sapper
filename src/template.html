@@ -1,4 +1,4 @@
-<!doctype html />
+<!DOCTYPE html />
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -6,11 +6,20 @@
     <meta name="theme-color" content="#333333" />
     %sapper.base%
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="materialize/css/materialize.min.css"
+      media="screen,projection"
+    />
     <link rel="manifest" href="manifest.json" />
     <link rel="icon" type="image/png" href="favicon.png" />
-
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <!-- <script type="text/javascript" src="https://js.stripe.com/v3/"></script> -->
     <!-- Sapper generates a <style> tag containing critical CSS
 	     for the current page. CSS for the rest of the app is
 	     lazily loaded when it precaches secondary pages -->
@@ -27,8 +36,11 @@
 
     <!-- Sapper creates a <script> tag containing `app/client.js`
 	     and anything else it needs to hydrate the app and
-	     initialise the router -->
+       initialise the router -->
     %sapper.scripts%
-    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    <script
+      type="text/javascript"
+      src="materialize/js/materialize.min.js"
+    ></script>
   </body>
 </html>
