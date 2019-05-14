@@ -5,11 +5,16 @@
   export let segment;
 
   const { session } = stores();
-  let AddCreditsButton;
+  let AddCreditsButtonV3;
+  let AddCreditsButtonV2;
 
   onMount(async () => {
-    const module = await import("./AddCreditsButton.v2.svelte");
-    AddCreditsButton = module.default;
+    const [moduleV2, moduleV3] = await Promise.all([
+      import("./AddCreditsButton.v2.svelte"),
+      import("./AddCreditsButton.v3.svelte")
+    ]);
+    AddCreditsButtonV2 = moduleV2.default;
+    AddCreditsButtonV3 = moduleV3.default;
   });
 </script>
 
@@ -24,7 +29,10 @@
         <ul class="right">
           {#if $session}
             <li>
-              <svelte:component this={AddCreditsButton} />
+              <svelte:component this={AddCreditsButtonV2} />
+            </li>
+            <li>
+              <svelte:component this={AddCreditsButtonV3} />
             </li>
             <li>
               <a href="javascript:void(0)">
