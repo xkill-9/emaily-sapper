@@ -2,7 +2,7 @@
   // This is using Stripe 3, you need to load "https://js.stripe.com/v3/" script on template.html
   import { fade } from "svelte/transition";
 
-  import { attempCharge } from "./_attempCharge.js";
+  import { attemptCharge } from "./_attemptCharge.js";
   import Modal from "./Modal.svelte";
 
   let showModal = false;
@@ -53,7 +53,7 @@
       errorElement.textContent = result.error.message;
     } else {
       // Send the token to your server.
-      await attempCharge({ id: result.token.id });
+      await attemptCharge({ id: result.token.id });
       sendingPayment = false;
       showModal = false;
     }

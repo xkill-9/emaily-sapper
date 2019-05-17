@@ -1,7 +1,7 @@
 <script>
   // This is using Stripe legacy checkout, same as in the course.
 
-  import { attempCharge } from "./_attempCharge.js";
+  import { attemptCharge } from "./_attemptCharge.js";
 
   const checkoutHandler = StripeCheckout.configure({
     key: process.env.STRIPE_PUBLIC_KEY,
@@ -14,7 +14,7 @@
       amount: 500,
       currency: "usd",
       description: "Add 5 Emaily credits to your account",
-      token: attempCharge
+      token: attemptCharge
     });
   }
 </script>
