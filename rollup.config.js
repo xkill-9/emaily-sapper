@@ -12,6 +12,7 @@ const mode = process.env.NODE_ENV;
 const stripeKey = process.env.STRIPE_PUBLIC_KEY;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
+const timestamp = process.env.SAPPER_TIMESTAMP || Date.now();
 
 export default {
   client: {
@@ -91,6 +92,7 @@ export default {
       replace({
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode),
+        'process.env.SAPPER_TIMESTAMP': timestamp,
       }),
       commonjs(),
       !dev && terser(),
