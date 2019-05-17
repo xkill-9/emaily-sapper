@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { stores } from '@sapper/app';
 
-export async function attempCharge(body) {
+export async function attemptCharge(body) {
   const { session } = stores();
   try {
     const response = await fetch('/api/charge', {
